@@ -1,0 +1,41 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.env
+venv/
+env/
+
+# Directorios de PyInstaller
+build/
+dist/
+*.spec  # El archivo .spec se suele mantener para configuración, pero su salida no.
+
+# Archivos de IDEs y editores
+.vscode/        # Configuraciones de VS Code
+.idea/          # Configuraciones de IntelliJ/PyCharm
+*.iml           # Archivos de módulos de IntelliJ
+*.sublime-project # Archivos de proyecto de Sublime Text
+*.sublime-workspace # Archivos de workspace de Sublime Text
+.DS_Store       # macOS
+Thumbs.db       # Windows
+ehthumbs.db     # Windows
+Desktop.ini     # Windows
+*~              # Archivos temporales de algunos editores (e.g., Vim)
+
+# Archivos de logs
+*.log
+
+# Archivos de pruebas
+.pytest_cache/
+
+# Datos generados o temporales
+# Si tu indexer.py genera archivos de índice que no deben estar en el control de versiones,
+# especifica aquí el directorio o los tipos de archivo.
+# Por ejemplo, si los índices se guardan en una carpeta 'index_data/':
+index_data/
+# O si son archivos específicos, por ejemplo:
+*.idx
+*.pkl # Si serializas objetos para el índice
