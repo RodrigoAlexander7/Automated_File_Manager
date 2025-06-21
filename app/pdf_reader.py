@@ -9,7 +9,8 @@ def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
             for i in range(len_pag):
                 words = doc[i].get_text("words")
                 for word_info in words:
-                    _,_,_,_,word,_,_,_ = word_info 
+                    _,_,_,_,word,_,_,_ = word_info
+                    word = word.lower() 
                     dict_words[word] = dict_words.get(word,0) + 1
                     
 
