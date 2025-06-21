@@ -1,5 +1,7 @@
+import constant
 import pymupdf
 from typing import List
+
 
 def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
     dict_words = {} 
@@ -10,8 +12,11 @@ def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
                 words = doc[i].get_text("words")
                 for word_info in words:
                     _,_,_,_,word,_,_,_ = word_info
-                    word = word.lower() 
-                    dict_words[word] = dict_words.get(word,0) + 1
+                    word = word.lower()
+                    if not (word in constant.STOPWORDS_EN or 
+                           word in constant.STOPWORDS_ES or  
+                           word in constant.SYMBOLS):
+                        dict_words[word] = dict_words.get(word,0) + 1
                     
 
         return dict_words 
