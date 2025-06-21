@@ -1,14 +1,22 @@
-import fitz
+import pymupdf
 from typing import List
 
-def get_text_pdf(path_pdf: str, max_pag: int = 200)->str:
-    full_text = ""
+def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
+    dict_words = {} 
     try:
-        with fitz.open(path_pdf) as doc:
+        with pymupdf.open(path_pdf) as doc:
             len_pag = min(len(doc), max_pag)
             for i in range(len_pag):
-                full_text += doc[i].get_text()
-        return full_text
+                words = doc[i].get_text("words")
+                for word_info in words:
+                    _,_,_,_,word,_,_,_ = word_info 
+                    dict_words[word] = dict_words.get(word,0) + 1
+                    
+
+        return dict_words 
+    
     except Exception as e:
         print(f"Error in lecture {path_pdf}:{e}")
         return ""
+    
+
