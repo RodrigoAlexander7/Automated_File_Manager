@@ -6,6 +6,7 @@ __pycache__/
 # Entornos virtuales
 .env
 venv/
+test_files/
 env/
 
 # Directorios de PyInstaller
