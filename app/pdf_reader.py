@@ -1,11 +1,12 @@
 import app.constant as constant 
 import pymupdf
 
+from collections import defaultdict
 from typing import List
 from pathlib  import Path
 
 
-def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
+def get_words_pdf(path_pdf: str, max_pag: int = 700)->str:
     dict_words = {} 
     try:
         with pymupdf.open(path_pdf) as doc:
@@ -19,14 +20,23 @@ def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
                            word in constant.STOPWORDS_ES or  
                            word in constant.SYMBOLS):
                         dict_words[word] = dict_words.get(word,0) + 1
-                    
-
         return dict_words 
-    
     except Exception as e:
         print(f"Error in lecture {path_pdf}:{e}")
         return ""
-    
+
+"""
+def get_corpus(directory_pdf):
+    path_list = get_file_names(directory_pdf)
+    corpus = defaultdict(int)
+    dict_list = []
+    for path in path_list:
+        dict_list.append(get_words_pdf(path))
+    for dict_words in dict_list:
+        for word,count in dict_words.items():
+            corpus[word] += count
+    return corpus   
+"""
 def get_file_names(directory_path):
     file_list = []
     try:
