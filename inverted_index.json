@@ -39,6 +39,9 @@
     "output": [
         "JavaBook.pdf"
     ],
+    "type": [
+        "JavaBook.pdf"
+    ],
     "methods": [
         "JavaBook.pdf"
     ],
@@ -94,13 +97,7 @@
     "write": [
         "JavaBook.pdf"
     ],
-    "x": [
-        "JavaBook.pdf"
-    ],
     "called": [
-        "JavaBook.pdf"
-    ],
-    "\u2022": [
         "JavaBook.pdf"
     ],
     "example,": [
@@ -122,10 +119,10 @@
         "JavaBook.pdf",
         "test.pdf"
     ],
-    "//": [
+    "line": [
         "JavaBook.pdf"
     ],
-    "line": [
+    "run": [
         "JavaBook.pdf"
     ],
     "object": [
@@ -137,10 +134,10 @@
     "int": [
         "JavaBook.pdf"
     ],
-    "instance": [
+    "returns": [
         "JavaBook.pdf"
     ],
-    "n": [
+    "instance": [
         "JavaBook.pdf"
     ],
     "mobile": [
@@ -153,6 +150,9 @@
         "test.pdf"
     ],
     "different": [
+        "test.pdf"
+    ],
+    "differences": [
         "test.pdf"
     ],
     "ticketing": [

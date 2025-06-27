@@ -16,9 +16,7 @@ def get_words_pdf(path_pdf: str, max_pag: int = 700)->str:
                 for word_info in words:
                     _,_,_,_,word,_,_,_ = word_info
                     word = word.lower()
-                    if not (word in constant.STOPWORDS_EN or 
-                           word in constant.STOPWORDS_ES or  
-                           word in constant.SYMBOLS):
+                    if not (constant.is_stopword(word)):
                         dict_words[word] = dict_words.get(word,0) + 1
         return dict_words 
     except Exception as e:

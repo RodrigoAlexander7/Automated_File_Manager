@@ -1,5 +1,39 @@
+import re
+import string
+
+SUPPORTED_FILE_EXTENSIONS = {'.txt', '.md', '.doc', '.docx', '.pdf'}
 PATH_DIRECTORY = "test_files"
 JSON_INVERTED_INDEX_PATH = "inverted_index.json"
+
+MIN_WORD_LENGTH = 2  
+MAX_WORD_LENGTH = 25
+
+REGEX_PATTERNS = {
+    # delete puntuation and numbers, just words
+    'clean_text': re.compile(r'[^\w\s]|\d+', re.UNICODE),
+    
+    # delete multiple black spaces
+    'normalize_spaces': re.compile(r'\s+'),
+    
+    # delete words that just contain numbers
+    'only_numbers': re.compile(r'^\d+$'),
+    
+    # delete words with mix of symbols
+    'mixed_special_chars': re.compile(r'[^\w\s]', re.UNICODE),
+    
+    # delete url's
+    'urls': re.compile(r'https?://[^\s]+|www\.[^\s]+', re.IGNORECASE),
+    
+    # delete emails
+    'emails': re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'),
+    
+    # delete date 
+    'dates': re.compile(r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b'),
+    
+    # delete phone numbers
+    'phone_numbers': re.compile(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b'),
+}
+
 
 STOPWORDS_EN:frozenset[str] = frozenset({
     'a', 'about', 'above', 'after', 'again', 'against', 'ain', 'all', 'also', 
@@ -101,3 +135,15 @@ SYMBOLS = {
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9','et','al.'
 }
 
+PUNCTUATION_CHARS = frozenset(string.punctuation + '¡¿«»""''—–„‚‹›‚''""…•·‰†‡§¶†‡•‰¿¡')
+
+
+def is_stopword(word):
+  if len(word) <= MIN_WORD_LENGTH or len(word)>=(MAX_WORD_LENGTH):
+    return True
+  if (word in STOPWORDS_EN or
+      word in STOPWORDS_ES or
+      word in SYMBOLS or
+      word in PUNCTUATION_CHARS):
+    return True
+  return False
