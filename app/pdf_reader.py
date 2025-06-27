@@ -1,6 +1,8 @@
-import constant
+import app.constant as constant 
 import pymupdf
+
 from typing import List
+from pathlib  import Path
 
 
 def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
@@ -25,4 +27,16 @@ def get_words_pdf(path_pdf: str, max_pag: int = 200)->str:
         print(f"Error in lecture {path_pdf}:{e}")
         return ""
     
-
+def get_file_names(directory_path):
+    file_list = []
+    try:
+        for file in Path(directory_path).iterdir():
+            if file.is_file():
+                file_list.append(file)
+        return file_list
+    except FileNotFoundError:
+        print("Directory not found in: '{directory_path}")
+        return []
+    except Exception as e :
+        print("exption found: {e}")
+        return []
