@@ -11,4 +11,6 @@ if __name__ == "__main__":
         index = indexer.create_inverted_index(dictionary,file_path.name)
     print(index)
     indexer.save_inverted_index(index)
-    #WEEEEEEE NEED TO CONVERT FROM DEFAULT DICTIONARY TO A NORML DICT
+    
+    loaded_inverted_index = indexer.read_from_json()
+    print(loaded_inverted_index)
