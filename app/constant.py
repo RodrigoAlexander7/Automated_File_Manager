@@ -8,33 +8,6 @@ JSON_INVERTED_INDEX_PATH = "inverted_index.json"
 MIN_WORD_LENGTH = 2  
 MAX_WORD_LENGTH = 25
 
-REGEX_PATTERNS = {
-    # delete puntuation and numbers, just words
-    'clean_text': re.compile(r'[^\w\s]|\d+', re.UNICODE),
-    
-    # delete multiple black spaces
-    'normalize_spaces': re.compile(r'\s+'),
-    
-    # delete words that just contain numbers
-    'only_numbers': re.compile(r'^\d+$'),
-    
-    # delete words with mix of symbols
-    'mixed_special_chars': re.compile(r'[^\w\s]', re.UNICODE),
-    
-    # delete url's
-    'urls': re.compile(r'https?://[^\s]+|www\.[^\s]+', re.IGNORECASE),
-    
-    # delete emails
-    'emails': re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'),
-    
-    # delete date 
-    'dates': re.compile(r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b'),
-    
-    # delete phone numbers
-    'phone_numbers': re.compile(r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b'),
-}
-
-
 STOPWORDS_EN:frozenset[str] = frozenset({
     'a', 'about', 'above', 'after', 'again', 'against', 'ain', 'all', 'also', 
     'am', 'an', 'and', 'any', 'are', 'aren', "aren't", 'as', 'at', 'be', 
