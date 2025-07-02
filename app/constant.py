@@ -1,4 +1,3 @@
-import re
 import string
 
 SUPPORTED_FILE_EXTENSIONS = {'.txt', '.md', '.doc', '.docx', '.pdf'}
@@ -33,7 +32,7 @@ STOPWORDS_EN:frozenset[str] = frozenset({
     'yours', 'yourself', 'yourselves'
 })
 
-STOPWORDS_ES:frozenset[str] = ({
+STOPWORDS_ES:frozenset[str] = frozenset({
     'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'este', 'esta', 
     'estos', 'estas', 'ese', 'esa', 'esos', 'esas', 'aquel', 'aquella', 
     'aquellos', 'aquellas', 'todo', 'toda', 'todos', 'todas', 'otro', 'otra', 
