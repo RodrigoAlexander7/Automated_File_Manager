@@ -8,7 +8,11 @@ MIN_WORD_LENGTH = 2
 MAX_WORD_LENGTH = 25
 
 DOC_EXTENSION:frozenset[str] = frozenset({
-  '.doc', '.txt', '.docx'
+  '.doc', '.txt', '.docx', '.md'
+})
+
+MEDIA_EXTENSION:frozenset[str] = frozenset({
+  '.jpg', '.png', '.img', '.svg', '.gif', '.jpeg', '.mkv', '.mpg4', '.mp4', '.MOV'
 })
 
 SLIDE_EXTENSION:frozenset[str] = frozenset({
@@ -16,7 +20,7 @@ SLIDE_EXTENSION:frozenset[str] = frozenset({
 })
 
 CODE_EXTENSION:frozenset[str] = frozenset({
-  '.cpp', '.java', '.py', '.pl', '.js', '.ts'
+  '.cpp', '.java', '.py', '.pl', '.js', '.ts', '.ini', '.accdb', '.sql', '.mermaid'
 })
 
 COMPRESS_EXTENSION:frozenset[str] = frozenset({
@@ -29,6 +33,10 @@ PDF_EXTENSION:frozenset[str] = frozenset({
 
 EXECUTABLE_EXTENSION:frozenset[str] = frozenset({
   '.exe', '.msi'
+})
+
+SHEET_EXTENSION:frozenset[str] = frozenset({
+  '.xls', '.xlsx', '.csv'
 })
 
 

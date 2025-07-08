@@ -1,16 +1,19 @@
 import app.pdf_reader as pdf_reader
-import app.indexer as indexer  
+import sys
+from app.gui import MyMainWindow
+import app.constant as constant 
+import app.indexer as indexer 
+from pathlib import Path
 
-import app.constant as constant
+import app.file_manager as file_manager
+from PySide6.QtWidgets import QApplication
+
 
 if __name__ == "__main__":
-    route = constant.PATH_DIRECTORY
-    list_pdf = pdf_reader.get_file_names(route)
-    for file_path in list_pdf:
-        dictionary = pdf_reader.get_words_pdf(file_path)
-        index = indexer.create_inverted_index(dictionary,file_path.name)
-    print(index)
-    indexer.save_inverted_index(index)
     
-    loaded_inverted_index = indexer.read_from_json()
-    print(loaded_inverted_index)
+
+    app = QApplication(sys.argv)
+    window = MyMainWindow() 
+    window.show()
+    sys.exit(app.exec())
+

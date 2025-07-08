@@ -4,7 +4,14 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt 
 
+from . import file_manager
+from . import utils
+from . import constant 
+
+from pathlib import Path
+
 class MyMainWindow(QMainWindow):
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Path Selector")
@@ -15,7 +22,7 @@ class MyMainWindow(QMainWindow):
         main_layout = QVBoxLayout()
 
         # button select folder
-        self.browse_button = QPushButton("Seleccionar Carpeta")
+        self.browse_button = QPushButton("Select folder")
         self.browse_button.setObjectName("browseFolderButton") # Como en Designer
         main_layout.addWidget(self.browse_button)
 
@@ -26,6 +33,18 @@ class MyMainWindow(QMainWindow):
         self.folder_path_line_edit.setReadOnly(True) 
         main_layout.addWidget(self.folder_path_line_edit)
 
+
+        # button run app
+        self.runButton = QPushButton("Organize")
+        self.runButton.setObjectName("runButton") 
+        main_layout.addWidget(self.runButton)
+
+        # show the route
+        self.statusLabel = QLineEdit()
+        self.statusLabel.setObjectName("statusLabel") 
+        self.statusLabel.setReadOnly(True) 
+        main_layout.addWidget(self.statusLabel)
+
         # Widget 
         container_widget = QWidget()
         container_widget.setLayout(main_layout)
@@ -33,6 +52,15 @@ class MyMainWindow(QMainWindow):
 
         # connect the button to the (slot)
         self.browse_button.clicked.connect(self.select_folder)
+        self.runButton.clicked.connect(self.run_function) 
+        
+    def run_function(self):
+        file_manager.group_by_type(constant.PATH_DIRECTORY)
+        pdf_route = Path(constant.PATH_DIRECTORY) / "WFM_Organized/pdf_files"
+        utils.create_from_route(pdf_route)
+        self.statusLabel.setText("SUCCES BRO 😎")
+        print("Succes!!!!")
+
 
     def select_folder(self):
         # QFileDialog.getExistingDirectory(parent, caption, directory, options)
@@ -50,9 +78,10 @@ class MyMainWindow(QMainWindow):
 
         if selected_folder:
             self.folder_path_line_edit.setText(selected_folder)
-            print(f"Carpeta seleccionada: {selected_folder}")
+            constant.PATH_DIRECTORY = selected_folder
+            print(f"Selected!!: {constant.PATH_DIRECTORY}")
         else:
-            print("Selección de carpeta cancelada.")
+            print("Selection Aborted")
 
 
 if __name__ == "__main__":
