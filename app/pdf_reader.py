@@ -22,6 +22,24 @@ def get_words_pdf(path_pdf: str, max_pag: int = 700)->str:
     except Exception as e:
         print(f"Error in lecture {path_pdf}:{e}")
         return ""
+    
+# return a list of all the words in a doc
+def clean_words_pdf(path_pdf: str, max_pag: int = 700)->str:
+    list_words = [] 
+    try:
+        with pymupdf.open(path_pdf) as doc:
+            len_pag = min(len(doc), max_pag)
+            for i in range(len_pag):
+                words = doc[i].get_text("words")
+                for word_info in words:
+                    _,_,_,_,word,_,_,_ = word_info
+                    word = word.lower()
+                    if not (constant.is_stopword(word)):
+                        list_words.append(word)
+        return list_words
+    except Exception as e:
+        print(f"Error in lecture {path_pdf}:{e}")
+        return ""   
 
 """
 def get_corpus(directory_pdf):
