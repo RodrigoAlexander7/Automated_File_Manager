@@ -1,7 +1,7 @@
 from collections import defaultdict
 from pathlib import Path
+from . import constant
 import os
-import app.constant as constant
 import json
 
 inverted_index = defaultdict(list)

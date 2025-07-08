@@ -1,4 +1,4 @@
-import app.constant as constant 
+from . import constant
 import pymupdf
 
 from collections import defaultdict
@@ -24,7 +24,7 @@ def get_words_pdf(path_pdf: str, max_pag: int = 700)->str:
         return ""
     
 # return a list of all the words in a doc
-def clean_words_pdf(path_pdf: str, max_pag: int = 700)->str:
+def clean_words_pdf(path_pdf: str, max_pag: int = 700)->list[str]:
     list_words = [] 
     try:
         with pymupdf.open(path_pdf) as doc:
