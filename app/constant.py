@@ -7,6 +7,31 @@ JSON_INVERTED_INDEX_PATH = "inverted_index.json"
 MIN_WORD_LENGTH = 2  
 MAX_WORD_LENGTH = 25
 
+DOC_EXTENSION:frozenset[str] = frozenset({
+  '.doc', '.txt', '.docx'
+})
+
+SLIDE_EXTENSION:frozenset[str] = frozenset({
+  '.ppt', '.pptx'
+})
+
+CODE_EXTENSION:frozenset[str] = frozenset({
+  '.cpp', '.java', '.py', '.pl', '.js', '.ts'
+})
+
+COMPRESS_EXTENSION:frozenset[str] = frozenset({
+  '.zip', '.rar', '.7z', '.gz' , '.tgz', '.izo', '.tar'
+})
+
+PDF_EXTENSION:frozenset[str] = frozenset({
+  '.pdf'
+})
+
+EXECUTABLE_EXTENSION:frozenset[str] = frozenset({
+  '.exe', '.msi'
+})
+
+
 STOPWORDS_EN:frozenset[str] = frozenset({
     'a', 'about', 'above', 'after', 'again', 'against', 'ain', 'all', 'also', 
     'am', 'an', 'and', 'any', 'are', 'aren', "aren't", 'as', 'at', 'be', 
