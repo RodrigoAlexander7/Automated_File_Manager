@@ -22,7 +22,7 @@ def count_ocurrences(dict_doc_words:dict):
     return corpus
 
 
-def create_corpus_inverted_index(dict_doc_words:dict, corpus:defaultdict):
+def create_corpus_inverted_index_umbral(dict_doc_words:dict, corpus:defaultdict):
     inverted_index = defaultdict(set)
     TOTAL = 0
     for word_list in dict_doc_words.values():
@@ -33,6 +33,13 @@ def create_corpus_inverted_index(dict_doc_words:dict, corpus:defaultdict):
         for words in word_list:
             if(corpus[words] >= UMBRAL):
                 inverted_index[words].add(file_name)
+    return inverted_index
+
+def create_corpus_inverted_index(dict_doc_words:dict, corpus:defaultdict):
+    inverted_index = defaultdict(set)
+    for file_name, word_list in dict_doc_words.items():
+        for words in word_list:
+            inverted_index[words].add(file_name)
     return inverted_index
                 
 a = documents_content(constant.PATH_DIRECTORY)
