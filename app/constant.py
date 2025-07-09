@@ -1,11 +1,12 @@
 import string
+import re
 
 SUPPORTED_FILE_EXTENSIONS = {'.txt', '.md', '.doc', '.docx', '.pdf'}
 PATH_DIRECTORY = "test_files"
 JSON_INVERTED_INDEX_PATH = "inverted_index.json"
 
 MIN_WORD_LENGTH = 2  
-MAX_WORD_LENGTH = 25
+MAX_WORD_LENGTH = 14
 
 DOC_EXTENSION:frozenset[str] = frozenset({
   '.doc', '.txt', '.docx', '.md'
@@ -142,9 +143,14 @@ SYMBOLS = {
 
 PUNCTUATION_CHARS = frozenset(string.punctuation + '¡¿«»""''—–„‚‹›‚''""…•·‰†‡§¶†‡•‰¿¡')
 
+#REGEX EXPRESION
+NON_ALPHABETIC_PATTERN = re.compile(r'[^a-zA-Z]') 
+
 
 def is_stopword(word):
   if len(word) <= MIN_WORD_LENGTH or len(word)>=(MAX_WORD_LENGTH):
+    return True
+  if NON_ALPHABETIC_PATTERN.search(word):
     return True
   if (word in STOPWORDS_EN or
       word in STOPWORDS_ES or
