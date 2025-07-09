@@ -50,7 +50,7 @@ def dict_to_text_list(dict_doc_words):
     corpus_texts = []
     for file_name, word_list in dict_doc_words.items():
         doc_names.append(file_name)
-        corpus_texts.append("".join(word_list))
+        corpus_texts.append(" ".join(word_list))
     return doc_names, corpus_texts
                 
 def build_tfidf(corpus_texts):
@@ -58,7 +58,7 @@ def build_tfidf(corpus_texts):
     tfidf_matrix = vectorizer.fit_transform(corpus_texts)
     return tfidf_matrix, vectorizer
 
-def group_documents(tfidf_matrix, k=3):
+def group_documents(tfidf_matrix, k=5):
     model = KMeans(n_clusters=k, random_state=42)
     model.fit(tfidf_matrix)
     return model.labels_
@@ -75,16 +75,17 @@ def show_groups(doc_names, labels):
         for doc in docs:
             print(f"   - {doc}")
 
-def group_by_topics(dict_doc_words, k=3):
+def group_by_topics(dict_doc_words, k=5):
     doc_names, corpus_texts = dict_to_text_list(dict_doc_words)
     tfidf_matrix, vectorizer = build_tfidf(corpus_texts)
     labels = group_documents(tfidf_matrix, k)
     show_groups(doc_names, labels)
 
 
-
+"""
 a = documents_content(constant.PATH_DIRECTORY)
 b = count_ocurrences(a)
 print(create_corpus_inverted_index(a,b))
 
 group_by_topics(a)
+"""

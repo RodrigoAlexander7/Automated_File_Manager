@@ -7,6 +7,7 @@ from PySide6.QtCore import Qt
 from . import file_manager
 from . import utils
 from . import constant 
+from .  import clustering
 
 from pathlib import Path
 
@@ -39,11 +40,22 @@ class MyMainWindow(QMainWindow):
         self.runButton.setObjectName("runButton") 
         main_layout.addWidget(self.runButton)
 
-        # show the route
+        # show status
         self.statusLabel = QLineEdit()
         self.statusLabel.setObjectName("statusLabel") 
         self.statusLabel.setReadOnly(True) 
         main_layout.addWidget(self.statusLabel)
+
+        # button run group
+        self.groupButton = QPushButton("Group")
+        self.groupButton.setObjectName("groupButton") 
+        main_layout.addWidget(self.groupButton)
+
+        # show group status
+        self.groupStatusLabel = QLineEdit()
+        self.groupStatusLabel.setObjectName("groupStatusLabel") 
+        self.groupStatusLabel.setReadOnly(True) 
+        main_layout.addWidget(self.groupStatusLabel)
 
         # Widget 
         container_widget = QWidget()
@@ -53,7 +65,16 @@ class MyMainWindow(QMainWindow):
         # connect the button to the (slot)
         self.browse_button.clicked.connect(self.select_folder)
         self.runButton.clicked.connect(self.run_function) 
-        
+        self.groupButton.clicked.connect(self.group_function) 
+
+    def group_function(self):
+        pdf_route = Path(constant.PATH_DIRECTORY) / "WFM_Organized/pdf_files"
+        dict_doc_w = clustering.documents_content(pdf_route)
+        corpus = clustering.count_ocurrences(dict_doc_w)
+        print(clustering.create_corpus_inverted_index(dict_doc_w,corpus))
+        clustering.group_by_topics(dict_doc_w)
+        self.groupStatusLabel.setText("SUCCES AGAIN 👽")
+
     def run_function(self):
         file_manager.group_by_type(constant.PATH_DIRECTORY)
         pdf_route = Path(constant.PATH_DIRECTORY) / "WFM_Organized/pdf_files"
