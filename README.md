@@ -7,10 +7,10 @@
 
 ## English
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![PySide6](https://img.shields.io/badge/GUI-PySide6-green.svg)](https://doc.qt.io/qtforpython/)
-[![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-orange.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![PySide6 GUI](https://img.shields.io/badge/GUI-PySide6-6DB33F?logo=qt&logoColor=white)](https://doc.qt.io/qtforpython/)
+[![Machine Learning](https://img.shields.io/badge/ML-scikit--learn-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 **Automated Academic File Manager** - Intelligent system with graphical interface for automatic file organization and clustering of academic PDF documents using TF-IDF and K-means algorithms.
 
